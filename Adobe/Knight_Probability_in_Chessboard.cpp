@@ -23,6 +23,7 @@ The total probability the knight stays on the board is 0.0625.
 #include <bits/stdc++.h>
 using namespace std;
 
+
 class Solution {
 public:
     double dp[26][26][101];
