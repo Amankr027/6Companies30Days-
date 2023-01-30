@@ -32,3 +32,29 @@ Since "b" is lexicographically smaller than "c", it is included in the answer.
 #include <bits/stdc++.h>
 using namespace std;
 
+class Solution {
+public:
+    vector<vector<string>> mostPopularCreator(vector<string>& c, vector<string>& i, vector<int>& v) {
+        map<string,long> mp;
+        int j=0;
+        for(auto it : c){
+            mp[it] += v[j++];
+        }
+        map<long,vector<string>> mpp;
+        for(auto it : mp){
+            mpp[it.second].push_back(it.first);
+        }
+        vector<string> popular = mpp.rbegin()->second;
+        map<string,map<int,set<string>>> m;
+        for(int j=0;j<c.size();j++){
+            m[c[j]][v[j]].insert(i[j]);
+        }
+        vector<vector<string>> ans;
+        for(int j=0;j<popular.size();j++){
+            auto it = m[popular[j]].rbegin()->second;
+          
+            ans.push_back({popular[j],*it.begin()});
+        }
+        return ans;
+    }
+};
